@@ -1,0 +1,25 @@
+---
+title: "Hakalar2000_HomeworkOriginal"
+author: "Me"
+date: "September 16, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+This is code for [Homework 2](https://fuzzyatelin.github.io/bioanth-stats/homework-02.html), on week threee of AN597 associated with module 6 and 7. 
+
+>Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number of calls she will hear in that time is exactly 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+
+Question 1:What is the probability that she will hear more than 8 calls during any given session?
+
+If her previous belief is that she will hear 15 calls in a 2 hour timeframe (let's call that the average), then the probability of hearing 8 in that 2 hour timeframe, given a poisson distribution should be given by the equation:
+```{r}
+#First one
+##Next section
+###section within section
+####And it keeps getting smaller
+```
+
+
