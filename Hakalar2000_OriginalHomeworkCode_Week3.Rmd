@@ -36,10 +36,10 @@ Question 1: What is the probability that she will hear more than 8 calls during 
 #We will use the function ppois since it calculates the poisson probability for a variable that is not discrete. A discrete variable would be like exactly 8 calls, but we want to know the probablity of 8 calls and more.
 #lambda is equal to the mean so lambda<-15
 #q is equal to the number of success, in this case 8+
-#lower.tail is equal to TRUE if you want the probability of more than a certain number and FALSE if you want probability of less than a certain number. Because we want to know the probability of the 8+ we want to use TRUE. The default for this function is TRUE so we don't actually have to using lower.tail = TRUE in our function. 
+#lower.tail is equal to TRUE if you want the probability of less than a certain number and FALSE if you want probability of more than a certain number. Because we want to know the probability of the 8+ we want to use FALSE The default for this function is TRUE so we need to include lower in our function.
 
 #ppois(q, lambda, lower.tail)
-Probability<-ppois(q = 8, lambda = 15)
+Probability<-ppois(q = 8, lambda = 15, lower.tail = FALSE)
 Probability
 ```
 
@@ -62,28 +62,34 @@ Probability
 
 Question 4: Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
 ```{r}
-
+#So from what I gather, the poisson mass function is a line. that shows the distribution of probabilities for a given function. 
+?plot
+plot(dpois(x = 0:30, lambda = 15), type = "l", xlab = "Number of Calls", ylab = "Probability", main = "Poisson Mass Function")
+#We want to plot the discrete values for 0 to 30 for our poisson distribution which is why we used dpois. The type specifies the type of graph, in this case, l tells R to make a line graph. xlab, ylab, and main label the axises. 
 ```
+
 
 Question 5: Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
 ```{r}
-
+?rpois
+#So my interweb searches have lead me to finding rpois(). So lets look for a little information about rpois(). 
+rpois(104, lambda = 15)
+#That was rather easy! n = 104 (or the number of trials), and of course lambda still equals 15. 
 ```
 
 Question 6: Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
 ```{r}
-
+?hist
+x<-rpois(104, lambda = 15)
+hist(x, xlim = c(0, 30), xlab = "Number of Calls", main = "Frequency of calls over 104 observations")
+#The hist() fucntion denotes a histogram. xlim sets the limits of the x axis, xlab lables the x axis and main labels the title of the histogram. 
 ```
 
+Five things I struggles with
 
-
-If it dissapears, make a change and save it. 
-
-
-Make a list (numbers)
-<ol>
-<li>problem 1</li>
-<li>problem 2</li>
-
-
+>* Problem 4 through me off a bit, partly because I wasn't sure if you wanted a line graph, a histogram, or a scatter plot. I went with line since thats what the internet said to do. 
+>* I had a bit of a struggle understanding what poisson is and what exactly its suppose to look like. I understand it predicts the probability of something but I am still confused by it. 
+>* For question 5 I got 104 results but they were not ordered in any way. I wasn't sure if I should order them. Didn't seem to important so I ignored it. 
+>* This homework seem to easy to me. I feel like I missed something.
+>* How common is Poisson? And is creating random 104 results part of bootstrapping? 
 
