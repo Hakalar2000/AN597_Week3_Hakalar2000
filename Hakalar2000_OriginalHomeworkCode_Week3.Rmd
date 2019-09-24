@@ -64,8 +64,15 @@ Question 4: Plot the relevant Poisson mass function over the values in range 0 â
 ```{r}
 #So from what I gather, the poisson mass function is a line. that shows the distribution of probabilities for a given function. 
 ?plot
-plot(dpois(x = 0:30, lambda = 15), type = "l", xlab = "Number of Calls", ylab = "Probability", main = "Poisson Mass Function")
-#We want to plot the discrete values for 0 to 30 for our poisson distribution which is why we used dpois. The type specifies the type of graph, in this case, l tells R to make a line graph. xlab, ylab, and main label the axises. 
+?hist
+?ggplot2
+?ggplot
+?barplot
+x<-0:30
+l<-15
+Pois<-dpois(x = x, lambda = l)
+barplot(Pois, names.arg = x, space =  0, xlab = "Number of Calls", ylab = "Probability", main = "Probability Mass Function")
+#We want to plot the discrete values for 0 to 30 for our poisson distribution which is why we used dpois. Not sure what the spce = 0 is about at all or the names.arg function either. 
 ```
 
 
