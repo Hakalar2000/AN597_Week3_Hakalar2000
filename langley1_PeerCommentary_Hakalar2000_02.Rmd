@@ -25,7 +25,8 @@ Time Frame: 2 hours
 
 What is Poisson Distribution?
 * The experiment results in outcomes that can be classified as successes or failures. Calls or no calls, and how many calls. 
-* The average number of successes (μ) that occurs in a specified region is known. We believe the average is 15 calls in a 2 hour period.
+* The average number of successes (μ) that occurs in a specified region is known. We believe the average is 15 calls in a 2 hour period. 
+          LA: Wouldn't the average number of successes in a poisson dist. be λ not μ ?
 * The probability that a success will occur is proportional to the size of the region. A region includes a time frame, in this case two hours. 
 * The probability that a success will occur in an extremely small region is virtually zero. No calls in like 5 minutes but many calls in 2 hours.
 
@@ -41,6 +42,9 @@ Question 1: What is the probability that she will hear more than 8 calls during 
 #ppois(q, lambda, lower.tail)
 Probability<-ppois(q = 8, lambda = 15, lower.tail = FALSE)
 Probability
+
+#LA: My understanding is that if q=8, thats just the probability right at 8, since you haven't noted a range of values (i.e. 0:8 or 8:20) but I may be wrong, especially if changing the lower.tail function changes those parameters as you noted above. 
+#LA: What I did, is it tried to find the probability for 0:8 and then take the inverse of that for the probability of 'more than 8' but I'm not fully confident that what I did is right (I did get a similar probability value to you though)
 ```
 
 Question 2: What is the probability that she will hear no calls in a session?
@@ -73,6 +77,8 @@ l<-15
 Pois<-dpois(x = x, lambda = l)
 barplot(Pois, names.arg = x, space =  0, xlab = "Number of Calls", ylab = "Probability", main = "Probability Mass Function")
 #We want to plot the discrete values for 0 to 30 for our poisson distribution which is why we used dpois. Not sure what the spce = 0 is about at all or the names.arg function either. 
+
+#LA: I think the "space = 0" is making your bars touch with no space in between them. If you change it to "space = 1", then the bars move apart from one another. The "names.arg" function is telling R to plot the values associated with variable "x" below the bars on the x axis, which is why we see 0-30. 
 ```
 
 
@@ -82,6 +88,8 @@ Question 5: Simulate 104 results from this distribution (i.e., 2 years of Saturd
 #So my interweb searches have lead me to finding rpois(). So lets look for a little information about rpois(). 
 rpois(104, lambda = 15)
 #That was rather easy! n = 104 (or the number of trials), and of course lambda still equals 15. 
+
+#LA: I did the same thing! I know we should be able to use boxplotting but I could not figure it out. 
 ```
 
 Question 6: Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
@@ -90,6 +98,8 @@ Question 6: Plot the simulated results using hist() and use xlim() to set the ho
 x<-rpois(104, lambda = 15)
 hist(x, xlim = c(0, 30), xlab = "Number of Calls", main = "Frequency of calls over 104 observations")
 #The hist() fucntion denotes a histogram. xlim sets the limits of the x axis, xlab lables the x axis and main labels the title of the histogram. 
+
+#LA: How would you say your histogram compares to the shape of the probability mass function plotted up above?
 ```
 
 Five things I struggles with
@@ -100,3 +110,9 @@ Five things I struggles with
 >* This homework seem to easy to me. I feel like I missed something.
 >* How common is Poisson? And is creating random 104 results part of bootstrapping? 
 
+LA: My Comments
+
+1. It makes sense when you say you use ppois() for a variable that is not discrete whereas dpois() is for discrete variables (i.e. 8). I had difficulty understanding when to use ppois() vs dpois() so that is helpful. 
+2. When you say line graph, do you mean bar graph? I think what you have plotted up above is a technically a bar graph.
+3. Look throughout code for my other comments! (noted by #LA:)
+4. Good job!
