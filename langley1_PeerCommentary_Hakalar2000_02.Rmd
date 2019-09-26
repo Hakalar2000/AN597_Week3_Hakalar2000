@@ -1,0 +1,102 @@
+---
+title: "Hakalar2000_HomeworkOriginal"
+author: "Me"
+date: "September 16, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+This is code for [Homework 2](https://fuzzyatelin.github.io/bioanth-stats/homework-02.html), on week threee of AN597 associated with module 6 and 7. 
+
+>Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number of calls she will hear in that time is exactly 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+
+* problem 1
+* problem 2
+* problem 3
+* problem 4
+* problem 5
+* problem 6
+
+Mean = 15
+Poisson Random Variable = X
+Time Frame: 2 hours
+
+What is Poisson Distribution?
+* The experiment results in outcomes that can be classified as successes or failures. Calls or no calls, and how many calls. 
+* The average number of successes (μ) that occurs in a specified region is known. We believe the average is 15 calls in a 2 hour period.
+* The probability that a success will occur is proportional to the size of the region. A region includes a time frame, in this case two hours. 
+* The probability that a success will occur in an extremely small region is virtually zero. No calls in like 5 minutes but many calls in 2 hours.
+
+A poison random variable is the number of successes that result from a Poisson experiment.
+
+Question 1: What is the probability that she will hear more than 8 calls during any given session?
+```{r}
+#We will use the function ppois since it calculates the poisson probability for a variable that is not discrete. A discrete variable would be like exactly 8 calls, but we want to know the probablity of 8 calls and more.
+#lambda is equal to the mean so lambda<-15
+#q is equal to the number of success, in this case 8+
+#lower.tail is equal to TRUE if you want the probability of less than a certain number and FALSE if you want probability of more than a certain number. Because we want to know the probability of the 8+ we want to use FALSE The default for this function is TRUE so we need to include lower in our function.
+
+#ppois(q, lambda, lower.tail)
+Probability<-ppois(q = 8, lambda = 15, lower.tail = FALSE)
+Probability
+```
+
+Question 2: What is the probability that she will hear no calls in a session?
+```{r}
+#Now we have a discrete value of 0 which means we want to use dpois.
+#same variables as above except q = 0. 
+Probability<-dpois(0, lambda = 15)
+Probability
+#As you can see, there is very very low probability of our scinetist hearing nothing. 
+```
+
+Question 3: What is the probability that she will hear exactly 3 calls in a session?
+```{r}
+#same as above but we replace 0 with 3
+Probability<-dpois(3, lambda = 15)
+Probability
+#Still low but more likely than 0 calls. 
+```
+
+Question 4: Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+```{r}
+#So from what I gather, the poisson mass function is a line. that shows the distribution of probabilities for a given function. 
+?plot
+?hist
+?ggplot2
+?ggplot
+?barplot
+x<-0:30
+l<-15
+Pois<-dpois(x = x, lambda = l)
+barplot(Pois, names.arg = x, space =  0, xlab = "Number of Calls", ylab = "Probability", main = "Probability Mass Function")
+#We want to plot the discrete values for 0 to 30 for our poisson distribution which is why we used dpois. Not sure what the spce = 0 is about at all or the names.arg function either. 
+```
+
+
+Question 5: Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+```{r}
+?rpois
+#So my interweb searches have lead me to finding rpois(). So lets look for a little information about rpois(). 
+rpois(104, lambda = 15)
+#That was rather easy! n = 104 (or the number of trials), and of course lambda still equals 15. 
+```
+
+Question 6: Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+```{r}
+?hist
+x<-rpois(104, lambda = 15)
+hist(x, xlim = c(0, 30), xlab = "Number of Calls", main = "Frequency of calls over 104 observations")
+#The hist() fucntion denotes a histogram. xlim sets the limits of the x axis, xlab lables the x axis and main labels the title of the histogram. 
+```
+
+Five things I struggles with
+
+>* Problem 4 through me off a bit, partly because I wasn't sure if you wanted a line graph, a histogram, or a scatter plot. I went with line since thats what the internet said to do. 
+>* I had a bit of a struggle understanding what poisson is and what exactly its suppose to look like. I understand it predicts the probability of something but I am still confused by it. 
+>* For question 5 I got 104 results but they were not ordered in any way. I wasn't sure if I should order them. Didn't seem to important so I ignored it. 
+>* This homework seem to easy to me. I feel like I missed something.
+>* How common is Poisson? And is creating random 104 results part of bootstrapping? 
+
